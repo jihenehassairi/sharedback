@@ -1,13 +1,19 @@
 package tn.esprit.spring.entities;
 
 import java.io.Serializable;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
+
+// add unique 
 
 
 @Entity
@@ -29,10 +35,20 @@ public class ProductCategory implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
+	public ProductCategory(String categoryName) {
+		super();
+	
+	}
+	
+	@Column(name="category_name", unique =true , nullable = false)
 	private String categoryName;
 	
-	@ManyToOne
-	Product products;
+	/**@ManyToOne
+	Product products;*/
+	
+	
+	@OneToMany( mappedBy="productCategory")
+	private Set<Product> products;
 
 	
 	
@@ -44,6 +60,11 @@ public class ProductCategory implements Serializable {
 	}
 	
 	
+	public ProductCategory() {
+		super();
+	}
+
+
 	public void setId(int id) {
 		this.id = id;
 	}
@@ -59,4 +80,5 @@ public class ProductCategory implements Serializable {
 		this.categoryName = categoryName;
 	}
 
+	
 }
