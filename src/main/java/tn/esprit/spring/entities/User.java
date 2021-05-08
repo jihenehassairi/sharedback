@@ -17,7 +17,7 @@ import javax.persistence.InheritanceType;
 
 @Entity
 
-
+@Table(name="idkkk") 
 @Inheritance( strategy=InheritanceType.TABLE_PER_CLASS)
 @DiscriminatorColumn(name="USER_TYPE")
 public abstract class User implements Serializable {
